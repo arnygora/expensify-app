@@ -11,3 +11,8 @@ button {
 button:disabled {
   cursor: default;
 }
+
+.is-active {
+  margin-right: $s-size;
+  font-weight: bold;
+}
