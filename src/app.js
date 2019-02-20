@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppRouters} from "./routers/AppRouter";
-import 'normalize.css/normalize.css';
-import './styles/style.scss';
+import AppRouter from './routers/AppRouter';
 
-ReactDOM.render(<AppRouters/>, document.getElementById('app'));
-
+ReactDOM.render(<AppRouter />, document.getElementById('app'));

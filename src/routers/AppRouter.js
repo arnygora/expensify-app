@@ -1,28 +1,25 @@
-import React, {Fragment} from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Navigation} from '../components/Navigation'
-import {ExpansDashboard} from '../components/Dashboard'
-import {About} from '../components/About'
-import {Contact} from '../components/Contact'
-import {Profile} from '../components/Profile'
-import {NotFound} from '../components/PageNotFound'
+import React from 'react';
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import NotFoundPage from '../components/NotFoundPage';
+import Header from '../components/Header';
+import HomePage from '../components/HomePage';
+import ContactPage from '../components/ContactPage';
+import PortfolioItemPage from '../components/PortfolioItemPage';
+import PortfolioPage from '../components/PortfolioPage';
 
-const AppRouters = () => (
-    <Router>
-        <Fragment>
-            <header>
-                <h2>Expensive application</h2>
-            </header>
-            <Navigation />
-            <Switch>
-                <Route path="/" exact component={ExpansDashboard}/>
-                <Route path="/about" component={About}/>
-                <Route path="/contact" component={Contact}/>
-                <Route path="/profile" component={Profile}/>
-                <Route component={NotFound}/>
-            </Switch>
-        </Fragment>
-    </Router>
+const AppRouter = () => (
+  <BrowserRouter>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/" component={HomePage} exact={true} />
+        <Route path="/portfolio" component={PortfolioPage} exact={true} />
+        <Route path="/portfolio/:id" component={PortfolioItemPage} />
+        <Route path="/contact" component={ContactPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </div>
+  </BrowserRouter>
 );
 
-export {AppRouters}
+export default AppRouter;
