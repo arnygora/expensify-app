@@ -165,7 +165,7 @@ const addExpense2 = store.dispatch(addExpense({description: 'Coffee', note: 'peo
 // store.dispatch(removeExpense({id: addExpense1.expense.id}));
 // store.dispatch(editExpense(addExpense2.expense.id, {amount: 500, createdAt: 'today'}));
 //
-// store.dispatch(setTextFilter('ff'));
+store.dispatch(setTextFilter('ff'));
 // store.dispatch(setTextFilter());
 //
 // store.dispatch(sortByAmount());
