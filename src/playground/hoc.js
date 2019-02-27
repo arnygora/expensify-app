@@ -1,46 +1,42 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+// Higher Order Component (HOC) - A component (HOC) that renders another component
+// Reuse code
+// Render hijacking
+// Prop manipulation
+// Abstract state
 
-const View = ({text}) => (
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Info = (props) => (
+  <div>
+    <h1>Info</h1>
+    <p>The info is: {props.info}</p>
+  </div>
+);
+
+const withAdminWarning = (WrappedComponent) => {
+  return (props) => (
     <div>
-        <h1>some text is: {text}</h1>
+      {props.isAdmin && <p>This is private info. Please don't share!</p>}
+      <WrappedComponent {...props} />
     </div>
-);
-
-const AdminInfo = (EntireComponent) => {
-    return (props) => (
-        <div>
-            {props.isAdmin && <p>Please, don't forget about your sweet</p>}
-            <EntireComponent {...props}/>
-        </div>
-    )
+  );
 };
 
-const WithAdminInfo = AdminInfo(View);
-
-const AdminPage = () => (
-    <div style={{backgroundColor: 'cyan', padding: 50}}>
-        <h1>Welcome my liber froilen</h1>
+const requireAuthentication = (WrappedComponent) => {
+  return (props) => (
+    <div>
+      {props.isAuthenticated ? (
+        <WrappedComponent {...props} />
+      ) : (
+          <p>Please login to view the info</p>
+        )}
     </div>
-);
-
-const CheckUser = (InnerComponent) => {
-    return (props) => (
-        <div>
-            <InnerComponent/>
-            <div>
-                {props.isAuth ? (
-                    <p style={{backgroundColor: 'lightBlue', padding: 50}}>Glad to see you</p>
-                ) : (
-                    <p style={{backgroundColor: 'indianRed', padding: 50}}>Please, enter before</p>
-                )}
-            </div>
-        </div>
-    )
+  );
 };
 
-const RequireAuthentication = CheckUser(AdminPage);
+const AdminInfo = withAdminWarning(Info);
+const AuthInfo = requireAuthentication(Info);
 
-
-// ReactDOM.render(<WithAdminInfo isAdmin={true} text='added text from HOC'/>, document.getElementById('app'));
-ReactDOM.render(<RequireAuthentication isAuth={true}/>, document.getElementById('app'));
+// ReactDOM.render(<AdminInfo isAdmin={true} info="There are the details" />, document.getElementById('app'));
+ReactDOM.render(<AuthInfo isAuthenticated={true} info="There are the details" />, document.getElementById('app'));
