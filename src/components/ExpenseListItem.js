@@ -6,7 +6,7 @@ import {removeExpense} from "../actions/expenses";
 const ExpenseListItem = ({dispatch, id, description, amount, createdAt}) => {
     return (
         <div style={{background: 'cyan', padding: 30}}>
-            <p style={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', background: 'indianRed', padding: 15}}>
+            <p style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', background: 'indianRed', padding: 15}}>
                 {description}
                 <b>created at {createdAt}</b>
                 <span>amount is {amount}</span>
