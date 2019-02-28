@@ -1,24 +1,50 @@
 import React, {Component} from 'react'
 
 export default class ExpenseForm extends Component {
-    state={
+    state = {
         description: '',
-        amount: 0
-    }
+        amount: 0,
+        note: ''
+    };
+
+    changeDescriptionInput = (e) => {
+        let description = e.target.value;
+        this.setState(() => ({description}));
+    };
+
+    changeNumberInput = (e) => {
+        let amount = e.target.value;
+        this.setState(() => ({amount}));
+    };
+
+    changeNoteArea = (e) => {
+        let note = e.target.value;
+        this.setState(() => ({note}));
+    };
+
     render() {
         return (
             <div>
                 <form action="">
                     <input type="text"
                            placeholder='description'
-                           autoFocus/>
+                           autoFocus
+                           onChange={this.changeDescriptionInput}
+                    />
                     <input type="number"
-                           placeholder='Amount'/>
+                           placeholder='Amount'
+                           onChange={this.changeNumberInput}
+                    />
                     <textarea name="note"
-                           placeholder='add a note for you expense'
+                              placeholder='add a note for you expense'
+                              onChange={this.changeNoteArea}
                     >
                     </textarea>
-                    <button>Add expense</button>
+                    <button onClick={((e) => {
+                        e.preventDefault();
+                        console.log(this.state)
+
+                    })}>Add expense</button>
                 </form>
             </div>
         )
