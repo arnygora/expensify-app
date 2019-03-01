@@ -14,7 +14,9 @@ export default class ExpenseForm extends Component {
 
     changeNumberInput = (e) => {
         let amount = e.target.value;
-        this.setState(() => ({amount}));
+        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+            this.setState(() => ({amount}));
+        }
     };
 
     changeNoteArea = (e) => {
@@ -31,7 +33,8 @@ export default class ExpenseForm extends Component {
                            autoFocus
                            onChange={this.changeDescriptionInput}
                     />
-                    <input type="number"
+                    <input type="text"
+                           value={this.state.amount}
                            placeholder='Amount'
                            onChange={this.changeNumberInput}
                     />
@@ -44,7 +47,8 @@ export default class ExpenseForm extends Component {
                         e.preventDefault();
                         console.log(this.state)
 
-                    })}>Add expense</button>
+                    })}>Add expense
+                    </button>
                 </form>
             </div>
         )
