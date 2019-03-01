@@ -72,7 +72,6 @@ export default class ExpenseForm extends Component {
                     <button onClick={((e) => {
                         e.preventDefault();
                         console.log(this.state)
-
                     })}>Add expense
                     </button>
                 </form>
