@@ -10,10 +10,11 @@ const now = moment();
 export default class ExpenseForm extends Component {
     state = {
         description: '',
-        amount: 0,
+        amount: '',
         note: '',
         createdAt: moment(),
-        calendarFocused: false
+        calendarFocused: false,
+        error: ''
     };
 
     changeDescriptionInput = (e) => {
@@ -23,7 +24,7 @@ export default class ExpenseForm extends Component {
 
     changeNumberInput = (e) => {
         let amount = e.target.value;
-        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
             this.setState(() => ({amount}));
         }
     };
@@ -34,18 +35,34 @@ export default class ExpenseForm extends Component {
     };
 
     onDateChange = (createdAt) => {
-        this.setState(() => ({createdAt}))
+        if (createdAt) {
+            this.setState(() => ({createdAt}))
+        }
     };
 
-    onFocusChange = ({ focused }) => {
-        this.setState(() => ({ calendarFocused: focused }))
+    onFocusChange = ({focused}) => {
+        this.setState(() => ({calendarFocused: focused}))
+    };
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        if (!this.state.description || !this.state.amount) {
+            this.setState(() => ({error: true}))
+        } else {
+            this.setState(() => ({error: false}));
+            this.props.onSubmit({
+                description: this.state.description,
+                amount: parseFloat(this.state.amount, 10) * 100,
+                createdAt: this.state.createdAt.valueOf(),
+                note: this.state.note
+            })
+        }
     };
 
     render() {
         return (
-            <div>
-                {now.locale("uk").format('LLL')}
-                <form action="">
+            <div> {this.state.error && <p>Please, fill "Amount" & "Description" fields</p>}
+                <form action="" onSubmit={this.onSubmit}>
                     <input type="text"
                            placeholder='description'
                            autoFocus
@@ -62,17 +79,14 @@ export default class ExpenseForm extends Component {
                         focused={this.state.calendarFocused}
                         onFocusChange={this.onFocusChange}
                         numberOfMonths={1}
-                        isOutsideRange={()=> false}
+                        isOutsideRange={() => false}
                     />
                     <textarea name="note"
                               placeholder='add a note for you expense'
                               onChange={this.changeNoteArea}
                     >
                     </textarea>
-                    <button onClick={((e) => {
-                        e.preventDefault();
-                        console.log(this.state)
-                    })}>Add expense
+                    <button>Add expense
                     </button>
                 </form>
             </div>
