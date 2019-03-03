@@ -4,18 +4,19 @@ import {SingleDatePicker} from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
-// equal new Date()
-const now = moment();
-
 export default class ExpenseForm extends Component {
-    state = {
-        description: '',
-        amount: '',
-        note: '',
-        createdAt: moment(),
-        calendarFocused: false,
-        error: ''
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            description: props.expense ? props.expense.description : '',
+            note: props.expense ? props.expense.note : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            calendarFocused: false,
+            error: ''
+        };
+    }
 
     changeDescriptionInput = (e) => {
         let description = e.target.value;
@@ -63,10 +64,12 @@ export default class ExpenseForm extends Component {
         return (
             <div> {this.state.error && <p>Please, fill "Amount" & "Description" fields</p>}
                 <form action="" onSubmit={this.onSubmit}>
-                    <input type="text"
-                           placeholder='description'
-                           autoFocus
-                           onChange={this.changeDescriptionInput}
+                    <input
+                        type="text"
+                        placeholder="Description"
+                        autoFocus
+                        value={this.state.description}
+                        onChange={this.changeDescriptionInput}
                     />
                     <input type="text"
                            value={this.state.amount}
@@ -83,6 +86,7 @@ export default class ExpenseForm extends Component {
                     />
                     <textarea name="note"
                               placeholder='add a note for you expense'
+                              value={this.state.note}
                               onChange={this.changeNoteArea}
                     >
                     </textarea>
