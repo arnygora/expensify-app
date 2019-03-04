@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {removeExpense} from '../actions/expenses';
 
-const ExpenseListItem = ({dispatch, id, description, amount, note, createdAt}) => {
+const ExpenseListItem = ({id, description, amount, note, createdAt}) => {
     return (
         <div style={{background: 'cyan', padding: 30}}>
             <div style={{
