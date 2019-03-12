@@ -15,15 +15,29 @@ const database = firebase.database();
 database.ref().set({
     name: 'Anton Rozdobudko',
     age: 30,
-    isSingle: false,
+    stressLevel: 6,
+    job: {
+        title: 'SoftWare Dev',
+        company: 'SPD'
+    },
     location: {
         city: 'Cherkasy',
         country: 'Ukraine'
     }
+}).then(() => {
+    console.warn('success load data')
+}).catch((e) => {
+    console.log('This data is failed', e)
 });
 
-database.ref('age').set(27);
-database.ref('attributes').set({
-    height: 170,
-    weight: 80
+database.ref('isSingle').remove().then(() => {
+    console.warn('Urrrrraaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!!!!!!!!');
+}).catch((e) => {
+    console.error('You cannot add any values to data, because', e)
+});
+
+database.ref().update({
+    stressLevel: 9,
+    'job/company': 'Amazon',
+    'location/city': 'Seatle'
 });
