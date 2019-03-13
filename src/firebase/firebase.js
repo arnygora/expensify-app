@@ -12,32 +12,34 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-    name: 'Anton Rozdobudko',
-    age: 30,
-    stressLevel: 6,
-    job: {
-        title: 'SoftWare Dev',
-        company: 'SPD'
-    },
-    location: {
-        city: 'Cherkasy',
-        country: 'Ukraine'
-    }
-}).then(() => {
-    console.warn('success load data')
-}).catch((e) => {
-    console.log('This data is failed', e)
+database.ref().on('value', (snapshot) => {
+    const val = snapshot.val();
+
+    console.log(`Aloha dudes. I'm ${val.name}, WOrk a ${val.job.title} at ${val.job.company}`);
 });
 
-database.ref('isSingle').remove().then(() => {
-    console.warn('Urrrrraaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!!!!!!!!');
-}).catch((e) => {
-    console.error('You cannot add any values to data, because', e)
-});
 
-database.ref().update({
-    stressLevel: 9,
-    'job/company': 'Amazon',
-    'location/city': 'Seatle'
-});
+// database.ref().set({
+//     name: 'Anton Rozdobudko',
+//     age: 30,
+//     stressLevel: 6,
+//     job: {
+//         title: 'SoftWare Dev',
+//         company: 'SPD'
+//     },
+//     location: {
+//         city: 'Cherkasy',
+//         country: 'Ukraine'
+//     }
+// });
+//
+//
+// database.ref().update({
+//     stressLevel: 9,
+//     'job/company': 'Amazon',
+//     'location/city': 'Seatle'
+// }).then(() => (
+//     console.log('uraaaa')
+// )).catch((e) => (
+//     console.log('errrroriina', e)
+// ));
