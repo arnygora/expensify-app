@@ -12,12 +12,33 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().on('value', (snapshot) => {
-    const val = snapshot.val();
+database.ref('expenses').push(
+    {
+        description: 'REnt',
+        note: '',
+        amount: 545,
+        createdAt: 545451321,
+    });
 
-    console.log(`Aloha dudes. I'm ${val.name}, WOrk a ${val.job.title} at ${val.job.company}`);
+database.ref('expenses').push({
+    description: 'phone bill',
+    note: ' note',
+    amount: 102545,
+    createdAt: 87797464631,
 });
 
+database.ref('expenses').push({
+    description: 'food',
+    note: 'fish',
+    amount: 777,
+    createdAt: 87797464631,
+});
+
+// database.ref().on('value', (snapshot) => {
+//     const val = snapshot.val();
+//
+//     console.log(`Aloha dudes. I'm ${val.name}, WOrk a ${val.job.title} at ${val.job.company}`);
+// });
 
 // database.ref().set({
 //     name: 'Anton Rozdobudko',
