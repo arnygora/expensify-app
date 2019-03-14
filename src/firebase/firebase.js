@@ -12,27 +12,27 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref('expenses').push(
-    {
-        description: 'REnt',
-        note: '',
-        amount: 545,
-        createdAt: 545451321,
+database.ref('expenses')
+    .on('value', (snapshot) => {
+        const expenses = [];
+        snapshot.forEach((childSnapshot) => {
+            expenses.push({
+                id: childSnapshot.key,
+                ...childSnapshot.val()
+            })
+        });
+        console.log(expenses)
     });
 
-database.ref('expenses').push({
-    description: 'phone bill',
-    note: ' note',
-    amount: 102545,
-    createdAt: 87797464631,
-});
 
-database.ref('expenses').push({
-    description: 'food',
-    note: 'fish',
-    amount: 777,
-    createdAt: 87797464631,
-});
+// database.ref('expenses').push(
+//     {
+//         description: 'REnt',
+//         note: '',
+//         amount: 545,
+//         createdAt: 545451321,
+//     });
+
 
 // database.ref().on('value', (snapshot) => {
 //     const val = snapshot.val();
