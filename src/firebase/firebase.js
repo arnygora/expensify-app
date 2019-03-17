@@ -12,27 +12,42 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref('expenses')
-    .on('value', (snapshot) => {
-        const expenses = [];
-        snapshot.forEach((childSnapshot) => {
-            expenses.push({
-                id: childSnapshot.key,
-                ...childSnapshot.val()
-            })
-        });
-        console.log(expenses)
-    });
+export { firebase, database as default }
 
+// database.ref('expenses')
+//     .on('child_removed', (snapshot) => {
+//         console.log(snapshot.key, snapshot.val())
+//     });
+//
+// database.ref('expenses')
+//     .on('child_changed', (snapshot) => {
+//         console.log(snapshot.key, snapshot.val())
+//     });
+//
+// database.ref('expenses')
+//     .on('child_added', (snapshot) => {
+//         console.log(snapshot.key, snapshot.val())
+//     });
+
+// database.ref('expenses')
+//     .on('value', (snapshot) => {
+//         const expenses = [];
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key,
+//                 ...childSnapshot.val()
+//             })
+//         });
+//         console.log(expenses)
+//     });
 
 // database.ref('expenses').push(
 //     {
-//         description: 'REnt',
-//         note: '',
+//         description: 'fish',
+//         note: 'msdsdsdb',
 //         amount: 545,
-//         createdAt: 545451321,
+//         createdAt: 545321,
 //     });
-
 
 // database.ref().on('value', (snapshot) => {
 //     const val = snapshot.val();
@@ -40,27 +55,5 @@ database.ref('expenses')
 //     console.log(`Aloha dudes. I'm ${val.name}, WOrk a ${val.job.title} at ${val.job.company}`);
 // });
 
-// database.ref().set({
-//     name: 'Anton Rozdobudko',
-//     age: 30,
-//     stressLevel: 6,
-//     job: {
-//         title: 'SoftWare Dev',
-//         company: 'SPD'
-//     },
-//     location: {
-//         city: 'Cherkasy',
-//         country: 'Ukraine'
-//     }
-// });
-//
-//
-// database.ref().update({
-//     stressLevel: 9,
-//     'job/company': 'Amazon',
-//     'location/city': 'Seatle'
-// }).then(() => (
-//     console.log('uraaaa')
-// )).catch((e) => (
-//     console.log('errrroriina', e)
-// ));
+
+
