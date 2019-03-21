@@ -11,8 +11,10 @@ const ExpenseListItem = ({id, description, amount, note, createdAt}) => {
                 background: 'indianRed',
                 padding: 15
             }}>
-                <h3><Link to={`/edit/${id}`}
-                >{description}</Link></h3>
+                <h3>
+                    <Link to={`/edit/${id}`}
+                >{description}
+                </Link></h3>
                 <b>created at {createdAt}</b>
                 <span>amount is {amount}</span>
                 <span>note: {note}</span>
