@@ -12,43 +12,13 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-export { firebase, database as default }
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-// database.ref('expenses')
-//     .on('child_changed', (snapshot) => {
-//         console.log(snapshot.key, snapshot.val())
-//     });
-//
-// database.ref('expenses')
-//     .on('child_added', (snapshot) => {
-//         console.log(snapshot.key, snapshot.val())
-//     });
+googleAuthProvider.setCustomParameters({
+    'prompt': 'select_account'
+});
 
-// database.ref('expenses')
-//     .on('value', (snapshot) => {
-//         const expenses = [];
-//         snapshot.forEach((childSnapshot) => {
-//             expenses.push({
-//                 id: childSnapshot.key,
-//                 ...childSnapshot.val()
-//             })
-//         });
-//         console.log(expenses)
-//     });
-
-// database.ref('expenses').push(
-//     {
-//         description: 'fish',
-//         note: 'msdsdsdb',
-//         amount: 545,
-//         createdAt: 545321,
-//     });
-
-// database.ref().on('value', (snapshot) => {
-//     const val = snapshot.val();
-//
-//     console.log(`Aloha dudes. I'm ${val.name}, WOrk a ${val.job.title} at ${val.job.company}`);
-// });
+export {firebase, googleAuthProvider, database as default}
 
 
 
