@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
 import Header from '../components/Header';
 
-
 export const PrivateRoute = ({
              isAuthenticated,
              component: Component,
@@ -22,8 +21,6 @@ export const PrivateRoute = ({
     )}/>
 
 );
-console.log(PrivateRoute.component);
-
 
 const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid
