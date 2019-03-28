@@ -11,8 +11,8 @@ const Header = ({startLogout}) => (
                     <h1>Expensify</h1>
                 </Link>
                 <button
-                    className=''
-                    onClick={startLogout}>Log out</button>
+                    className='button button--link'
+                    onClick={startLogout}>Logout</button>
             </div>
         </div>
     </header>
