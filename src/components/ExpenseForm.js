@@ -66,15 +66,18 @@ export default class ExpenseForm extends Component {
                 <form action="" onSubmit={this.onSubmit}>
                     <input
                         type="text"
+                        className='text-input'
                         placeholder="Description"
                         autoFocus
                         value={this.state.description}
                         onChange={this.changeDescriptionInput}
                     />
-                    <input type="text"
-                           value={this.state.amount}
-                           placeholder='Amount'
-                           onChange={this.changeNumberInput}
+                    <input
+                        type="text"
+                        className='text-input'
+                        placeholder='Amount'
+                        value={this.state.amount}
+                        onChange={this.changeNumberInput}
                     />
                     <SingleDatePicker
                         date={this.state.createdAt}
@@ -84,10 +87,12 @@ export default class ExpenseForm extends Component {
                         numberOfMonths={1}
                         isOutsideRange={() => false}
                     />
-                    <textarea name="note"
-                              placeholder='add a note for you expense'
-                              value={this.state.note}
-                              onChange={this.changeNoteArea}
+                    <textarea
+                        className='text-select'
+                        name="note"
+                        placeholder='add a note for you expense'
+                        value={this.state.note}
+                        onChange={this.changeNoteArea}
                     >
                     </textarea>
                     <button>Add expense
