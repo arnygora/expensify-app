@@ -5,7 +5,7 @@ import {startLogin} from "../actions/auth";
 const LoginPage = ({startLogin}) => (
     <div className='box-layout'>
         <div className="box-layout__box">
-            <h1 className='box-layout__title'>Expensify</h1>
+            <h1 className='box-layout__title'>Expensify app</h1>
             <p>created from udemy course</p>
             <button
                 className='button'
