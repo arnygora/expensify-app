@@ -10,6 +10,11 @@
   color: white;
 }
 
+.button--secondary {
+  margin-bottom: $l-size; // костиль
+  background: #888;
+}
+
 .button--link {
   background: none;
   border: none;

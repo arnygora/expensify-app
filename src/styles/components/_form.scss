@@ -1,8 +1,16 @@
 .form {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
+  > * {
+    margin-bottom: $m-size;
+  }
 }
 
-.form__error {
+.SingleDatePickerInput {
+  display: block;
+  background-color: #fff; }
 
+.form__error {
+  margin: 0 0 $m-size 0;
+  font-style: italic;
 }
